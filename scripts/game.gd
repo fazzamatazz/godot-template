@@ -3,19 +3,25 @@ class_name Game extends Node
 @onready var _loading_screen: Control = %LoadingScreen
 @onready var _loading_sprite: Sprite2D = %Sprite2D
 
-@export var _main_scene: PackedScene
-
-var _main: MainScene
+var _main_scene: MainScene
 var _is_loading: bool = true
 
 
 func _ready() -> void:
-	start_main_scene()
+	open_main_menu()
+
+
+func open_main_menu() -> void:
+	EventBus.emit_signal("open_main_menu")
 
 
 func _process(delta: float) -> void:
 	if _is_loading:
 		_loading_sprite.rotation += delta * 4.0
+
+
+func exit_game() -> void:
+	get_tree().quit()
 
 
 func _show_loading_screen() -> void:
@@ -30,13 +36,14 @@ func _hide_loading_screen() -> void:
 
 
 func start_main_scene() -> void:
-	_main = _main_scene.instantiate()
-	add_child(_main)
-	move_child(_main, 0)
-	_hide_loading_screen()
+	_main_scene = preload("uid://drugaqdqqegi8").instantiate()
+	_main_scene.game = self
+	add_child(_main_scene)
+	move_child(_main_scene, 0)
+	#_hide_loading_screen()
 
 
 func stop_main_scene() -> void:
-	if _main:
-		_main.queue_free()
-		remove_child(_main)
+	if _main_scene:
+		_main_scene.queue_free()
+		remove_child(_main_scene)

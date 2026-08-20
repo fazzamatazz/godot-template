@@ -26,7 +26,7 @@ const MAX_FALL_SPEED := 20.0
 @onready var _step_handler := %StepHandler
 @onready var _step_raycast := %StepRayCast3D
 
-#var user_prefs : UserPreferences
+var user_prefs : UserPreferences
 
 var _input_dir : Vector2
 var _step_timer := 0.0
@@ -49,15 +49,15 @@ func _process(_delta: float) -> void:
 
 
 func _init_user_preferences() -> void:
-	#user_prefs = UserPreferences.load_or_create()
-	#_invert_mouse = user_prefs.invert_mouse
-	#_invert_gamepad = user_prefs.invert_gamepad
+	user_prefs = UserPreferences.load_or_create()
+	_invert_mouse = user_prefs.invert_mouse
+	_invert_gamepad = user_prefs.invert_gamepad
 	pass
 
 
 func _init_signals() -> void:
-	#EventBus.settings_invert_gamepad.connect(on_invert_gamepad_toggle)
-	#EventBus.settings_invert_mouse.connect(on_invert_mouse_toggle)
+	EventBus.settings_invert_gamepad.connect(on_invert_gamepad_toggle)
+	EventBus.settings_invert_mouse.connect(on_invert_mouse_toggle)
 	pass
 
 

@@ -1,5 +1,9 @@
 class_name MainScene extends Node3D
 
 
+@export var game: Game
+
+
 func stop_game() -> void:
-	get_tree().quit()
+	game.stop_main_scene()
+	game.open_main_menu()

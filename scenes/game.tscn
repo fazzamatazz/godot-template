@@ -1,31 +1,236 @@
 [gd_scene format=3 uid="uid://pb307nlqiyj2"]
 
 [ext_resource type="Script" uid="uid://bafvdvg3uyuop" path="res://scripts/game.gd" id="1_uwrxv"]
-[ext_resource type="PackedScene" uid="uid://drugaqdqqegi8" path="res://scenes/main_scene.tscn" id="2_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://cpel1dsrttayj" path="res://assets/icons/godot-icon-white.svg" id="3_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://cguky4dx5mt1w" path="res://scenes/performance_monitor.tscn" id="3_lnu2h"]
+[ext_resource type="Theme" uid="uid://cwrkngwrwm1md" path="res://assets/themes/default_theme.tres" id="4_iywne"]
+[ext_resource type="Script" uid="uid://mxkppi4tjvry" path="res://scripts/settings_menu.gd" id="4_u5sy4"]
+[ext_resource type="Script" uid="uid://i536kdm6x2u8" path="res://scripts/main_menu.gd" id="5_p57ef"]
+[ext_resource type="Script" uid="uid://cnutbkaphw1ld" path="res://scripts/checkbutton.gd" id="6_gee14"]
 
 [node name="Game" type="Node" unique_id=100589575]
 script = ExtResource("1_uwrxv")
-_main_scene = ExtResource("2_yqjtg")
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=13293093]
 
 [node name="PerformanceMonitor" parent="GUI" unique_id=612432395 instance=ExtResource("3_lnu2h")]
 
+[node name="SettingsMenu" type="Control" parent="GUI" unique_id=61398278]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_iywne")
+script = ExtResource("4_u5sy4")
+
+[node name="ColorRect" type="ColorRect" parent="GUI/SettingsMenu" unique_id=942963688]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.16565639, 0.16565642, 0.16565639, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/SettingsMenu" unique_id=1400095971]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="SettingsButtonsVBoxContainer" type="VBoxContainer" parent="GUI/SettingsMenu/MarginContainer" unique_id=658366644]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="InvertMouseCheckButton" type="CheckButton" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsVBoxContainer" unique_id=721092687]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../BackButton")
+focus_neighbor_bottom = NodePath("../InvertGamepadCheckButton")
+focus_next = NodePath("../InvertGamepadCheckButton")
+focus_previous = NodePath("../BackButton")
+text = "INVERT MOUSE Y-AXIS"
+script = ExtResource("6_gee14")
+
+[node name="InvertGamepadCheckButton" type="CheckButton" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsVBoxContainer" unique_id=159741361]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../InvertMouseCheckButton")
+focus_neighbor_bottom = NodePath("../FullscreenCheckButton")
+focus_next = NodePath("../FullscreenCheckButton")
+focus_previous = NodePath("../InvertMouseCheckButton")
+text = "INVERT GAMEPAD Y-AXIS"
+script = ExtResource("6_gee14")
+
+[node name="FullscreenCheckButton" type="CheckButton" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsVBoxContainer" unique_id=1509535957]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../InvertGamepadCheckButton")
+focus_neighbor_bottom = NodePath("../VsyncCheckButton")
+focus_next = NodePath("../VsyncCheckButton")
+focus_previous = NodePath("../InvertGamepadCheckButton")
+text = "FULLSCREEN"
+script = ExtResource("6_gee14")
+
+[node name="VsyncCheckButton" type="CheckButton" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsVBoxContainer" unique_id=456395739]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../FullscreenCheckButton")
+focus_neighbor_bottom = NodePath("../BackButton")
+focus_next = NodePath("../BackButton")
+focus_previous = NodePath("../FullscreenCheckButton")
+text = "V-SYNC
+"
+script = ExtResource("6_gee14")
+
+[node name="BackButton" type="Button" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsVBoxContainer" unique_id=89501092]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../VsyncCheckButton")
+focus_neighbor_bottom = NodePath("../InvertMouseCheckButton")
+focus_next = NodePath("../InvertMouseCheckButton")
+focus_previous = NodePath("../VsyncCheckButton")
+text = "BACK"
+
+[node name="MainMenu" type="Control" parent="GUI" unique_id=1315708126 node_paths=PackedStringArray("game")]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_iywne")
+script = ExtResource("5_p57ef")
+game = NodePath("../..")
+
+[node name="ColorRect" type="ColorRect" parent="GUI/MainMenu" unique_id=1281465798]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.16565639, 0.16565642, 0.16565639, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/MainMenu" unique_id=1154674504]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/MainMenu/MarginContainer" unique_id=837166852]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="GUI/MainMenu/MarginContainer/VBoxContainer" unique_id=898224909]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "Game Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButtonsVBoxContainer" type="VBoxContainer" parent="GUI/MainMenu/MarginContainer/VBoxContainer" unique_id=1827019146]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="StartGameButton" type="Button" parent="GUI/MainMenu/MarginContainer/VBoxContainer/MenuButtonsVBoxContainer" unique_id=115295794]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../ExitGameButton")
+focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../ExitGameButton")
+text = "START"
+
+[node name="SettingsButton" type="Button" parent="GUI/MainMenu/MarginContainer/VBoxContainer/MenuButtonsVBoxContainer" unique_id=1502410520]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../StartGameButton")
+focus_neighbor_bottom = NodePath("../ExitGameButton")
+focus_next = NodePath("../ExitGameButton")
+focus_previous = NodePath("../StartGameButton")
+text = "SETTINGS"
+
+[node name="ExitGameButton" type="Button" parent="GUI/MainMenu/MarginContainer/VBoxContainer/MenuButtonsVBoxContainer" unique_id=743628235]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_neighbor_bottom = NodePath("../StartGameButton")
+focus_next = NodePath("../StartGameButton")
+focus_previous = NodePath("../SettingsButton")
+text = "EXIT"
+
 [node name="LoadingScreen" type="Control" parent="GUI" unique_id=1633142923]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="GUI/LoadingScreen" unique_id=1360275203]
-layout_mode = 0
-offset_right = 640.0
-offset_bottom = 360.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="GUI/LoadingScreen" unique_id=354760906]
+[node name="Sprite2DAnchor" type="Control" parent="GUI/LoadingScreen" unique_id=2129862432]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="GUI/LoadingScreen/Sprite2DAnchor" unique_id=354760906]
 unique_name_in_owner = true
-position = Vector2(609, 327)
+position = Vector2(20, 20)
 scale = Vector2(0.03, 0.03)
 texture = ExtResource("3_lbhrr")
+
+[connection signal="toggled" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsVBoxContainer/InvertMouseCheckButton" to="GUI/SettingsMenu" method="_on_invert_mouse_check_button_toggled"]
+[connection signal="toggled" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsVBoxContainer/InvertGamepadCheckButton" to="GUI/SettingsMenu" method="_on_invert_gamepad_check_button_toggled"]
+[connection signal="toggled" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsVBoxContainer/FullscreenCheckButton" to="GUI/SettingsMenu" method="_on_fullscreen_check_button_toggled"]
+[connection signal="toggled" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsVBoxContainer/VsyncCheckButton" to="GUI/SettingsMenu" method="_on_vsync_check_button_toggled"]
+[connection signal="pressed" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsVBoxContainer/BackButton" to="GUI/SettingsMenu" method="_on_back_button_pressed"]
+[connection signal="pressed" from="GUI/MainMenu/MarginContainer/VBoxContainer/MenuButtonsVBoxContainer/StartGameButton" to="GUI/MainMenu" method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="GUI/MainMenu/MarginContainer/VBoxContainer/MenuButtonsVBoxContainer/SettingsButton" to="GUI/MainMenu" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="GUI/MainMenu/MarginContainer/VBoxContainer/MenuButtonsVBoxContainer/ExitGameButton" to="GUI/MainMenu" method="_on_exit_game_button_pressed"]

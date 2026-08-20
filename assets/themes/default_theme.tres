@@ -1,0 +1,36 @@
+[gd_resource type="Theme" format=3 uid="uid://cwrkngwrwm1md"]
+
+[ext_resource type="Texture2D" uid="uid://b0ywicw0p6l1u" path="res://assets/themes/checkbox-checked.png" id="1_b4fcc"]
+[ext_resource type="FontFile" uid="uid://cxmnld46bmuux" path="res://assets/fonts/wellbutrin-font/Wellbutrin-Az2.ttf" id="1_sx0q5"]
+[ext_resource type="Texture2D" uid="uid://bmr8gimufuu67" path="res://assets/themes/checkbox-checked-r2l.png" id="2_2reeo"]
+[ext_resource type="Texture2D" uid="uid://ci5fanb4c5fwe" path="res://assets/themes/checkbox-unchecked.png" id="3_q3wao"]
+[ext_resource type="Texture2D" uid="uid://b13u4oxkwgs45" path="res://assets/themes/checkbox-unchecked-r2l.png" id="4_3ccda"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ac8xs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jw3da"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4a0ib"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qnqmi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jiwnd"]
+
+[resource]
+default_font = ExtResource("1_sx0q5")
+Button/colors/font_focus_color = Color(0.6548768, 0.69233644, 0.543518, 1)
+Button/colors/font_hover_color = Color(0.6548768, 0.69233644, 0.543518, 1)
+Button/colors/font_hover_pressed_color = Color(0.6548768, 0.69233644, 0.543518, 1)
+Button/styles/disabled = SubResource("StyleBoxEmpty_ac8xs")
+Button/styles/focus = SubResource("StyleBoxEmpty_jw3da")
+Button/styles/hover = SubResource("StyleBoxEmpty_4a0ib")
+Button/styles/normal = SubResource("StyleBoxEmpty_qnqmi")
+Button/styles/pressed = SubResource("StyleBoxEmpty_jiwnd")
+CheckButton/icons/checked = ExtResource("1_b4fcc")
+CheckButton/icons/checked_disabled = ExtResource("1_b4fcc")
+CheckButton/icons/checked_disabled_mirrored = ExtResource("2_2reeo")
+CheckButton/icons/checked_mirrored = ExtResource("2_2reeo")
+CheckButton/icons/unchecked = ExtResource("3_q3wao")
+CheckButton/icons/unchecked_disabled = ExtResource("3_q3wao")
+CheckButton/icons/unchecked_disabled_mirrored = ExtResource("4_3ccda")
+CheckButton/icons/unchecked_mirrored = ExtResource("4_3ccda")
