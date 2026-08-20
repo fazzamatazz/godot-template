@@ -9,6 +9,7 @@ var _is_loading: bool = true
 
 func _ready() -> void:
 	open_main_menu()
+	_hide_loading_screen()
 
 
 func open_main_menu() -> void:

@@ -16,6 +16,7 @@ script = ExtResource("1_uwrxv")
 [node name="PerformanceMonitor" parent="GUI" unique_id=612432395 instance=ExtResource("3_lnu2h")]
 
 [node name="SettingsMenu" type="Control" parent="GUI" unique_id=61398278]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -190,7 +191,6 @@ text = "EXIT"
 
 [node name="LoadingScreen" type="Control" parent="GUI" unique_id=1633142923]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -214,15 +214,25 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
+offset_left = -121.0
 offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
+[node name="Label" type="Label" parent="GUI/LoadingScreen/Sprite2DAnchor" unique_id=587995660]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 8.0
+offset_right = 104.0
+offset_bottom = 31.0
+theme = ExtResource("4_iywne")
+theme_override_font_sizes/font_size = 14
+text = "Loading"
+
 [node name="Sprite2D" type="Sprite2D" parent="GUI/LoadingScreen/Sprite2DAnchor" unique_id=354760906]
 unique_name_in_owner = true
-position = Vector2(20, 20)
-scale = Vector2(0.03, 0.03)
+position = Vector2(99.99999, 19)
+scale = Vector2(0.025, 0.025)
 texture = ExtResource("3_lbhrr")
 
 [connection signal="toggled" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsVBoxContainer/InvertMouseCheckButton" to="GUI/SettingsMenu" method="_on_invert_mouse_check_button_toggled"]
