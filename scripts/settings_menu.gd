@@ -28,7 +28,7 @@ func _init_user_preferences() -> void:
 	vsync_toggle.button_pressed = user_prefs.vsync_enabled
 	_on_vsync_check_button_toggled(user_prefs.vsync_enabled)
 	fullscreen_toggle.button_pressed = user_prefs.fullscreen_enabled
-	_on_vsync_check_button_toggled(user_prefs.fullscreen_enabled)
+	_on_fullscreen_check_button_toggled(user_prefs.fullscreen_enabled)
 	invert_mouse_check_button.button_pressed = user_prefs.invert_mouse
 	invert_gamepad_check_button.button_pressed = user_prefs.invert_gamepad
 
