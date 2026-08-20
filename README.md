@@ -1,6 +1,6 @@
 # Template project for Godot
 
-Godot version: 4.7
+Godot version: 4.7  
 Author: fazz  
 Created: 20 Aug 2026  
 
