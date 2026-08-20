@@ -2,12 +2,30 @@
 
 [ext_resource type="Script" uid="uid://bafvdvg3uyuop" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://drugaqdqqegi8" path="res://scenes/main_scene.tscn" id="2_yqjtg"]
+[ext_resource type="Texture2D" uid="uid://cpel1dsrttayj" path="res://assets/icons/godot-icon-white.svg" id="3_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://cguky4dx5mt1w" path="res://scenes/performance_monitor.tscn" id="3_lnu2h"]
 
 [node name="Game" type="Node" unique_id=100589575]
 script = ExtResource("1_uwrxv")
-main_scene = ExtResource("2_yqjtg")
+_main_scene = ExtResource("2_yqjtg")
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=13293093]
 
 [node name="PerformanceMonitor" parent="GUI" unique_id=612432395 instance=ExtResource("3_lnu2h")]
+
+[node name="LoadingScreen" type="Control" parent="GUI" unique_id=1633142923]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ColorRect" type="ColorRect" parent="GUI/LoadingScreen" unique_id=1360275203]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="GUI/LoadingScreen" unique_id=354760906]
+unique_name_in_owner = true
+position = Vector2(609, 327)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("3_lbhrr")
