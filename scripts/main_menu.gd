@@ -1,4 +1,4 @@
-class_name MainMenu extends Control
+extends Control
 
 @onready var buttons_v_box_container: VBoxContainer = %MenuButtonsVBoxContainer
 

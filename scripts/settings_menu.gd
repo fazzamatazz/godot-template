@@ -1,4 +1,4 @@
-class_name SettingsMenu extends Control
+extends Control
 
 @onready var buttons_v_box_container: VBoxContainer = %SettingsButtonsVBoxContainer
 @onready var fullscreen_toggle: CheckButton = %FullscreenCheckButton

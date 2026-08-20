@@ -1,4 +1,4 @@
-class_name PerformanceMonitor extends Control
+extends Control
 
 ## Set whether the Performance Monitor should run and display data in the parented HUD
 @export var _enabled := true
