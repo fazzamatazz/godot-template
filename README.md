@@ -1,29 +1,9 @@
-# README #
+# Template project for Godot
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Godot version: 4.7
+Author: fazz  
+Created: 20 Aug 2026  
 
-### What is this repository for? ###
+### Useful links
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+https://docs.godotengine.org/en/stable/#godot-docs-4-7-branch
