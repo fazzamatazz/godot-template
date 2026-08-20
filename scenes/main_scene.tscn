@@ -24,4 +24,5 @@ environment = SubResource("Environment_pw63i")
 
 [node name="Level" parent="." unique_id=1993211839 instance=ExtResource("1_w2twt")]
 
-[node name="Player" parent="." unique_id=730536248 instance=ExtResource("2_pw63i")]
+[node name="Player" parent="." unique_id=730536248 node_paths=PackedStringArray("_main_scene") instance=ExtResource("2_pw63i")]
+_main_scene = NodePath("..")

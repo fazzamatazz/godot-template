@@ -24,6 +24,13 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
 
+[file_customization]
+
+folder_colors={
+"res://scenes/": "teal",
+"res://scripts/": "yellow"
+}
+
 [input]
 
 forward={

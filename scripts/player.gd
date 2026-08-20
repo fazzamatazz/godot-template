@@ -1,5 +1,4 @@
-class_name Player
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 const MAX_ANGLE_LOOK_UP := deg_to_rad(70)
 const MAX_ANGLE_LOOK_DOWN := deg_to_rad(-70)
@@ -19,7 +18,7 @@ const MAX_FALL_SPEED := 20.0
 @export var _gamepad_sensitivity_x := 0.05
 @export var _gamepad_sensitivity_y := 0.05
 @export var _spotlight : SpotLight3D
-#@export var _world : World
+@export var _main_scene : MainScene
 
 @onready var _head := %Head
 @onready var _camera_pivot := %CameraPivot
@@ -44,8 +43,9 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("escape"):
-			#_world.stop_game()
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			if _main_scene:
+				_main_scene.stop_game()
 
 
 func _init_user_preferences() -> void:
