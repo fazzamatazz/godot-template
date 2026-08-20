@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://drugaqdqqegi8"]
+
+[ext_resource type="Script" uid="uid://cfl7faydemjqy" path="res://scripts/main_scene.gd" id="1_7ykc4"]
+[ext_resource type="PackedScene" uid="uid://dko2o0je2tpyv" path="res://scenes/level.tscn" id="1_w2twt"]
+[ext_resource type="PackedScene" uid="uid://dtdye2cjibkuv" path="res://scenes/player.tscn" id="2_pw63i"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_und3l"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_w2twt"]
+sky_material = SubResource("ProceduralSkyMaterial_und3l")
+
+[sub_resource type="Environment" id="Environment_pw63i"]
+background_mode = 2
+sky = SubResource("Sky_w2twt")
+ambient_light_source = 3
+
+[node name="MainScene" type="Node3D" unique_id=2139951959]
+script = ExtResource("1_7ykc4")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=368104862]
+environment = SubResource("Environment_pw63i")
+
+[node name="Level" parent="." unique_id=1993211839 instance=ExtResource("1_w2twt")]
+
+[node name="Player" parent="." unique_id=730536248 instance=ExtResource("2_pw63i")]

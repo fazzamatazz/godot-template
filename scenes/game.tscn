@@ -1,3 +1,8 @@
 [gd_scene format=3 uid="uid://pb307nlqiyj2"]
 
+[ext_resource type="Script" uid="uid://bafvdvg3uyuop" path="res://scripts/game.gd" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://drugaqdqqegi8" path="res://scenes/main_scene.tscn" id="2_yqjtg"]
+
 [node name="Game" type="Node" unique_id=100589575]
+script = ExtResource("1_uwrxv")
+main_scene = ExtResource("2_yqjtg")
