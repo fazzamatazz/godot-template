@@ -5,8 +5,8 @@ class_name Game extends Node
 
 @export var _main_scene: PackedScene
 
-var _is_loading: bool = true
 var _main: MainScene
+var _is_loading: bool = true
 
 
 func _ready() -> void:

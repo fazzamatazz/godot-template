@@ -74,11 +74,11 @@ func _update_label() -> void:
 		_label.text += "\ncollision pairs".rpad(22) + "%.0f" % collision_pairs
 
 
-func _update_variables(delta: float) -> void:
+func _update_variables(_delta: float) -> void:
 	
 	frame_time_ms = Performance.get_monitor(Performance.TIME_PROCESS) * 1000.0
-	fps_equivalent = 1000.0 / frame_time_ms
-	fps = Performance.get_monitor(Performance.TIME_FPS)
+	fps_equivalent = int(1000.0 / frame_time_ms)
+	fps = int(Performance.get_monitor(Performance.TIME_FPS))
 	physics_fps = Engine.physics_ticks_per_second
 	
 	draw_calls = RenderingServer.get_rendering_info(
@@ -93,9 +93,7 @@ func _update_variables(delta: float) -> void:
 		Performance.RENDER_VIDEO_MEM_USED
 	) / 1024.0 / 1024.0
 
-	total_nodes = Performance.get_monitor(
-		Performance.OBJECT_NODE_COUNT
-	)
+	total_nodes = int(Performance.get_monitor(Performance.OBJECT_NODE_COUNT))
 	
 	if _verbose:
 		triangles = RenderingServer.get_rendering_info(
@@ -112,13 +110,9 @@ func _update_variables(delta: float) -> void:
 		
 		visible_nodes = _count_visible_nodes(get_tree().current_scene)
 		
-		physics_objects = Performance.get_monitor(
-			Performance.PHYSICS_3D_ACTIVE_OBJECTS
-		)
+		physics_objects = int(Performance.get_monitor(Performance.PHYSICS_3D_ACTIVE_OBJECTS))
 		
-		collision_pairs = Performance.get_monitor(
-			Performance.PHYSICS_3D_COLLISION_PAIRS
-		)
+		collision_pairs = int(Performance.get_monitor(Performance.PHYSICS_3D_COLLISION_PAIRS))
 
 
 func _count_visible_nodes(node: Node) -> int:
