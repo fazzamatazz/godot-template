@@ -116,9 +116,9 @@ script = ExtResource("4_u5sy4")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
-anchor_top = 0.1
+anchor_top = 0.05
 anchor_right = 0.95
-anchor_bottom = 0.9
+anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.3764706)
@@ -131,9 +131,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 64
-theme_override_constants/margin_top = 32
+theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 96
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_bottom = 16
 
 [node name="SettingsButtonsGridContainer" type="GridContainer" parent="GUI/SettingsMenu/MarginContainer" unique_id=1512440556]
 unique_name_in_owner = true
@@ -213,6 +213,13 @@ script = ExtResource("6_vtaks")
 label = NodePath("../SoundVolumeLabel")
 label_text = "SOUND VOLUME:  "
 
+[node name="HSeparator" type="HSeparator" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=1529265802]
+modulate = Color(1, 1, 1, 0.3764706)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=415762918]
+layout_mode = 2
+
 [node name="InvertMouseLabel" type="Label" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=333721983]
 layout_mode = 2
 text = "INVERT MOUSE Y-AXIS"
@@ -227,14 +234,37 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(16, 0)
 offset_transform_visual_only = false
 focus_neighbor_top = NodePath("../SoundVolumeSlider")
-focus_neighbor_bottom = NodePath("../InvertGamepadCheckButton")
-focus_next = NodePath("../InvertGamepadCheckButton")
+focus_neighbor_bottom = NodePath("../MouseSensitivitySlider")
+focus_next = NodePath("../MouseSensitivitySlider")
 focus_previous = NodePath("../SoundVolumeSlider")
 script = ExtResource("6_gee14")
 
+[node name="MouseSensitivityLabel" type="Label" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=156446308]
+layout_mode = 2
+text = "MOUSE SENSITIVITY:  25"
+horizontal_alignment = 2
+
+[node name="MouseSensitivitySlider" type="HSlider" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=355021178 node_paths=PackedStringArray("label")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+offset_transform_enabled = true
+offset_transform_position = Vector2(16, 0)
+offset_transform_visual_only = false
+focus_neighbor_top = NodePath("../InvertMouseCheckButton")
+focus_neighbor_bottom = NodePath("../InvertGamepadCheckButton")
+focus_next = NodePath("../InvertGamepadCheckButton")
+focus_previous = NodePath("../InvertMouseCheckButton")
+value = 25.0
+tick_count = 5
+script = ExtResource("6_vtaks")
+label = NodePath("../MouseSensitivityLabel")
+label_text = "MOUSE SENSITIVITY:  "
+
 [node name="InverGamepadLabel" type="Label" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=593533198]
 layout_mode = 2
-text = "INVERT GAMEPAD Y-AXIS"
+text = "       INVERT GAMEPAD Y-AXIS"
 horizontal_alignment = 2
 
 [node name="InvertGamepadCheckButton" type="CheckButton" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=159741361]
@@ -245,11 +275,41 @@ size_flags_vertical = 4
 offset_transform_enabled = true
 offset_transform_position = Vector2(16, 0)
 offset_transform_visual_only = false
-focus_neighbor_top = NodePath("../InvertMouseCheckButton")
+focus_neighbor_top = NodePath("../MouseSensitivitySlider")
+focus_neighbor_bottom = NodePath("../GamepadSensitivitySlider")
+focus_next = NodePath("../GamepadSensitivitySlider")
+focus_previous = NodePath("../MouseSensitivitySlider")
+script = ExtResource("6_gee14")
+
+[node name="GamepadSensitivityLabel" type="Label" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=833406888]
+layout_mode = 2
+text = "GAMEPAD SENSITIVITY:  50"
+horizontal_alignment = 2
+
+[node name="GamepadSensitivitySlider" type="HSlider" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=1100422843 node_paths=PackedStringArray("label")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+offset_transform_enabled = true
+offset_transform_position = Vector2(16, 0)
+offset_transform_visual_only = false
+focus_neighbor_top = NodePath("../InvertGamepadCheckButton")
 focus_neighbor_bottom = NodePath("../FullscreenCheckButton")
 focus_next = NodePath("../FullscreenCheckButton")
-focus_previous = NodePath("../InvertMouseCheckButton")
-script = ExtResource("6_gee14")
+focus_previous = NodePath("../InvertGamepadCheckButton")
+value = 50.0
+tick_count = 5
+script = ExtResource("6_vtaks")
+label = NodePath("../GamepadSensitivityLabel")
+label_text = "GAMEPAD SENSITIVITY:  "
+
+[node name="HSeparator2" type="HSeparator" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=510678006]
+modulate = Color(1, 1, 1, 0.3764706)
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=1815817559]
+layout_mode = 2
 
 [node name="FullscreenLabel" type="Label" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=1397019725]
 layout_mode = 2
@@ -264,10 +324,10 @@ size_flags_vertical = 4
 offset_transform_enabled = true
 offset_transform_position = Vector2(16, 0)
 offset_transform_visual_only = false
-focus_neighbor_top = NodePath("../InvertGamepadCheckButton")
+focus_neighbor_top = NodePath("../GamepadSensitivitySlider")
 focus_neighbor_bottom = NodePath("../VsyncCheckButton")
 focus_next = NodePath("../VsyncCheckButton")
-focus_previous = NodePath("../InvertGamepadCheckButton")
+focus_previous = NodePath("../GamepadSensitivitySlider")
 script = ExtResource("6_gee14")
 
 [node name="VsyncLabel" type="Label" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=1271838678]
@@ -314,8 +374,7 @@ label = NodePath("../TargetFPSLabel")
 
 [node name="BackButton" type="Button" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=89501092]
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
+size_flags_horizontal = 0
 focus_neighbor_top = NodePath("../TargetFPSSlider")
 focus_neighbor_bottom = NodePath("../MasterVolumeSlider")
 focus_next = NodePath("../MasterVolumeSlider")
@@ -405,7 +464,6 @@ text = "EXIT"
 
 [node name="LoadingScreen" type="Control" parent="GUI" unique_id=1633142923]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -457,7 +515,9 @@ texture = ExtResource("3_lbhrr")
 [connection signal="value_changed" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/MusicVolumeSlider" to="GUI/SettingsMenu" method="_on_music_volume_slider_value_changed"]
 [connection signal="value_changed" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/SoundVolumeSlider" to="GUI/SettingsMenu" method="_on_sound_volume_slider_value_changed"]
 [connection signal="toggled" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/InvertMouseCheckButton" to="GUI/SettingsMenu" method="_on_invert_mouse_check_button_toggled"]
+[connection signal="value_changed" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/MouseSensitivitySlider" to="GUI/SettingsMenu" method="_on_mouse_sensitivity_slider_value_changed"]
 [connection signal="toggled" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/InvertGamepadCheckButton" to="GUI/SettingsMenu" method="_on_invert_gamepad_check_button_toggled"]
+[connection signal="value_changed" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/GamepadSensitivitySlider" to="GUI/SettingsMenu" method="_on_gamepad_sensitivity_slider_value_changed"]
 [connection signal="toggled" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/FullscreenCheckButton" to="GUI/SettingsMenu" method="_on_fullscreen_check_button_toggled"]
 [connection signal="toggled" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/VsyncCheckButton" to="GUI/SettingsMenu" method="_on_vsync_check_button_toggled"]
 [connection signal="value_changed" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/TargetFPSSlider" to="GUI/SettingsMenu" method="_on_target_fps_slider_value_changed"]

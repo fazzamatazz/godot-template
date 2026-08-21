@@ -8,6 +8,8 @@ class_name UserPreferences extends Resource
 @export_range (0.0, 100.0, 5.0) var master_volume: float = 100.0
 @export_range (0.0, 100.0, 5.0) var music_volume: float = 100.0
 @export_range (0.0, 100.0, 5.0) var sound_volume: float = 100.0
+@export_range (0.0, 100.0, 1.0) var mouse_sensitivity: float = 25.0
+@export_range (0.0, 100.0, 1.0) var gamepad_sensitivity: float = 50.0
 
 func save() -> void:
 	ResourceSaver.save(self, "user://user_prefs.tres")

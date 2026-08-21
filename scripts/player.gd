@@ -12,8 +12,8 @@ const MAX_FALL_SPEED := 20.0
 # in metres per second. This is implemented as a delay before the next step can be taken, rather than a velocity
 @export var _step_speed := 1.5
 @export var _invert_mouse := false
-@export var _mouse_sensitivity_x := 0.004
-@export var _mouse_sensitivity_y := 0.004
+@export var _mouse_sensitivity_x := 0.01
+@export var _mouse_sensitivity_y := 0.01
 @export var _invert_gamepad := false
 @export var _gamepad_sensitivity_x := 0.05
 @export var _gamepad_sensitivity_y := 0.05
@@ -57,8 +57,10 @@ func _release_mouse() -> void:
 
 func _init_user_preferences() -> void:
 	user_prefs = UserPreferences.load_or_create()
-	_invert_mouse = user_prefs.invert_mouse
-	_invert_gamepad = user_prefs.invert_gamepad
+	on_invert_mouse_toggle(user_prefs.invert_mouse)
+	on_invert_gamepad_toggle(user_prefs.invert_gamepad)
+	on_change_mouse_sensitivity(user_prefs.mouse_sensitivity)
+	on_change_gamepad_sensitivity(user_prefs.gamepad_sensitivity)
 
 
 func _init_signals() -> void:
@@ -66,6 +68,18 @@ func _init_signals() -> void:
 	EventBus.settings_invert_mouse.connect(on_invert_mouse_toggle)
 	EventBus.pause_game.connect(_release_mouse)
 	EventBus.resume_game.connect(_capture_mouse)
+	EventBus.settings_change_mouse_sensitivity.connect(on_change_mouse_sensitivity)
+	EventBus.settings_change_gamepad_sensitivity.connect(on_change_gamepad_sensitivity)
+
+
+func on_change_mouse_sensitivity(value: float) -> void:
+	_mouse_sensitivity_x = 0.0005 * value
+	_mouse_sensitivity_y = 0.0005 * value
+
+
+func on_change_gamepad_sensitivity(value: float) -> void:
+	_gamepad_sensitivity_x = 0.001 * value
+	_gamepad_sensitivity_y = 0.001 * value
 
 
 func on_invert_mouse_toggle(toggled_on: bool) -> void:

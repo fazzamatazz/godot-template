@@ -9,6 +9,8 @@ extends Control
 @onready var master_volume_slider: HSlider = %MasterVolumeSlider
 @onready var music_volume_slider: HSlider = %MusicVolumeSlider
 @onready var sound_volume_slider: HSlider = %SoundVolumeSlider
+@onready var mouse_sensitivity_slider: HSlider = %MouseSensitivitySlider
+@onready var gamepad_sensitivity_slider: HSlider = %GamepadSensitivitySlider
 
 @onready var audio_bus_master := AudioServer.get_bus_index("Master")
 @onready var audio_bus_music := AudioServer.get_bus_index("Music")
@@ -49,6 +51,10 @@ func _init_user_preferences() -> void:
 	_on_fullscreen_check_button_toggled(user_prefs.fullscreen_enabled)
 	invert_mouse_check_button.button_pressed = user_prefs.invert_mouse
 	invert_gamepad_check_button.button_pressed = user_prefs.invert_gamepad
+	_on_mouse_sensitivity_slider_value_changed(user_prefs.mouse_sensitivity)
+	mouse_sensitivity_slider.value = user_prefs.mouse_sensitivity
+	_on_gamepad_sensitivity_slider_value_changed(user_prefs.gamepad_sensitivity)
+	gamepad_sensitivity_slider.value = user_prefs.gamepad_sensitivity
 
 
 func focus_button() -> void:
@@ -137,4 +143,18 @@ func _on_sound_volume_slider_value_changed(value: float) -> void:
 	sound_volume_slider.setLabelValue(value)
 	AudioServer.set_bus_volume_db(audio_bus_sound, linear_to_db(value * 0.01))
 	user_prefs.sound_volume = value
+	user_prefs.save()
+
+
+func _on_mouse_sensitivity_slider_value_changed(value: float) -> void:
+	mouse_sensitivity_slider.setLabelValue(value)
+	EventBus.emit_signal("settings_change_mouse_sensitivity", value)
+	user_prefs.mouse_sensitivity = value
+	user_prefs.save()
+
+
+func _on_gamepad_sensitivity_slider_value_changed(value: float) -> void:
+	gamepad_sensitivity_slider.setLabelValue(value)
+	EventBus.emit_signal("settings_change_gamepad_sensitivity", value)
+	user_prefs.gamepad_sensitivity = value
 	user_prefs.save()
