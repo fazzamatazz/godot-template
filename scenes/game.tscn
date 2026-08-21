@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://cwrkngwrwm1md" path="res://assets/themes/default_theme.tres" id="4_iywne"]
 [ext_resource type="Script" uid="uid://mxkppi4tjvry" path="res://scripts/settings_menu.gd" id="4_u5sy4"]
 [ext_resource type="Script" uid="uid://i536kdm6x2u8" path="res://scripts/main_menu.gd" id="5_p57ef"]
+[ext_resource type="Script" uid="uid://ce43ocym5fham" path="res://scripts/target_fps_slider.gd" id="6_0tnpc"]
 [ext_resource type="Script" uid="uid://cnutbkaphw1ld" path="res://scripts/checkbutton.gd" id="6_gee14"]
 
 [node name="Game" type="Node" unique_id=100589575]
@@ -16,7 +17,6 @@ script = ExtResource("1_uwrxv")
 [node name="PerformanceMonitor" parent="GUI" unique_id=612432395 instance=ExtResource("3_lnu2h")]
 
 [node name="SettingsMenu" type="Control" parent="GUI" unique_id=61398278]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,71 +44,122 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
+theme_override_constants/margin_right = 128
 theme_override_constants/margin_bottom = 32
 
-[node name="SettingsButtonsVBoxContainer" type="VBoxContainer" parent="GUI/SettingsMenu/MarginContainer" unique_id=658366644]
+[node name="SettingsButtonsGridContainer" type="GridContainer" parent="GUI/SettingsMenu/MarginContainer" unique_id=1512440556]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
+columns = 2
 
-[node name="InvertMouseCheckButton" type="CheckButton" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsVBoxContainer" unique_id=721092687]
+[node name="InvertMouseLabel" type="Label" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=333721983]
+layout_mode = 2
+text = "INVERT MOUSE Y-AXIS"
+horizontal_alignment = 2
+
+[node name="InvertMouseCheckButton" type="CheckButton" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=721092687]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(16, 0)
+offset_transform_visual_only = false
 focus_neighbor_top = NodePath("../BackButton")
 focus_neighbor_bottom = NodePath("../InvertGamepadCheckButton")
 focus_next = NodePath("../InvertGamepadCheckButton")
 focus_previous = NodePath("../BackButton")
-text = "INVERT MOUSE Y-AXIS"
 script = ExtResource("6_gee14")
 
-[node name="InvertGamepadCheckButton" type="CheckButton" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsVBoxContainer" unique_id=159741361]
+[node name="InverGamepadLabel" type="Label" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=593533198]
+layout_mode = 2
+text = "INVERT GAMEPAD Y-AXIS"
+horizontal_alignment = 2
+
+[node name="InvertGamepadCheckButton" type="CheckButton" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=159741361]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(16, 0)
+offset_transform_visual_only = false
 focus_neighbor_top = NodePath("../InvertMouseCheckButton")
 focus_neighbor_bottom = NodePath("../FullscreenCheckButton")
 focus_next = NodePath("../FullscreenCheckButton")
 focus_previous = NodePath("../InvertMouseCheckButton")
-text = "INVERT GAMEPAD Y-AXIS"
 script = ExtResource("6_gee14")
 
-[node name="FullscreenCheckButton" type="CheckButton" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsVBoxContainer" unique_id=1509535957]
+[node name="FullscreenLabel" type="Label" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=1397019725]
+layout_mode = 2
+text = "FULLSCREEN"
+horizontal_alignment = 2
+
+[node name="FullscreenCheckButton" type="CheckButton" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=1509535957]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(16, 0)
+offset_transform_visual_only = false
 focus_neighbor_top = NodePath("../InvertGamepadCheckButton")
 focus_neighbor_bottom = NodePath("../VsyncCheckButton")
 focus_next = NodePath("../VsyncCheckButton")
 focus_previous = NodePath("../InvertGamepadCheckButton")
-text = "FULLSCREEN"
 script = ExtResource("6_gee14")
 
-[node name="VsyncCheckButton" type="CheckButton" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsVBoxContainer" unique_id=456395739]
+[node name="VsyncLabel" type="Label" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=1271838678]
+layout_mode = 2
+text = "V-SYNC"
+horizontal_alignment = 2
+
+[node name="VsyncCheckButton" type="CheckButton" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=456395739]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(16, 0)
+offset_transform_visual_only = false
 focus_neighbor_top = NodePath("../FullscreenCheckButton")
-focus_neighbor_bottom = NodePath("../BackButton")
-focus_next = NodePath("../BackButton")
+focus_neighbor_bottom = NodePath("../TargetFPSSlider")
+focus_next = NodePath("../TargetFPSSlider")
 focus_previous = NodePath("../FullscreenCheckButton")
-text = "V-SYNC
-"
 script = ExtResource("6_gee14")
 
-[node name="BackButton" type="Button" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsVBoxContainer" unique_id=89501092]
+[node name="TargetFPSLabel" type="Label" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=1225572921]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+text = "TARGET FPS: 60"
+horizontal_alignment = 2
+
+[node name="TargetFPSSlider" type="HSlider" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=1333047966 node_paths=PackedStringArray("label")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+offset_transform_enabled = true
+offset_transform_position = Vector2(16, 0)
+offset_transform_visual_only = false
 focus_neighbor_top = NodePath("../VsyncCheckButton")
+focus_neighbor_bottom = NodePath("../BackButton")
+focus_next = NodePath("../BackButton")
+focus_previous = NodePath("../VsyncCheckButton")
+max_value = 720.0
+editable = false
+tick_count = 13
+script = ExtResource("6_0tnpc")
+label = NodePath("../TargetFPSLabel")
+
+[node name="BackButton" type="Button" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=89501092]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../TargetFPSSlider")
 focus_neighbor_bottom = NodePath("../InvertMouseCheckButton")
 focus_next = NodePath("../InvertMouseCheckButton")
-focus_previous = NodePath("../VsyncCheckButton")
+focus_previous = NodePath("../TargetFPSSlider")
 text = "BACK"
 
 [node name="MainMenu" type="Control" parent="GUI" unique_id=1315708126 node_paths=PackedStringArray("game")]
@@ -191,6 +242,7 @@ text = "EXIT"
 
 [node name="LoadingScreen" type="Control" parent="GUI" unique_id=1633142923]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -235,11 +287,12 @@ position = Vector2(99.99999, 19)
 scale = Vector2(0.025, 0.025)
 texture = ExtResource("3_lbhrr")
 
-[connection signal="toggled" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsVBoxContainer/InvertMouseCheckButton" to="GUI/SettingsMenu" method="_on_invert_mouse_check_button_toggled"]
-[connection signal="toggled" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsVBoxContainer/InvertGamepadCheckButton" to="GUI/SettingsMenu" method="_on_invert_gamepad_check_button_toggled"]
-[connection signal="toggled" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsVBoxContainer/FullscreenCheckButton" to="GUI/SettingsMenu" method="_on_fullscreen_check_button_toggled"]
-[connection signal="toggled" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsVBoxContainer/VsyncCheckButton" to="GUI/SettingsMenu" method="_on_vsync_check_button_toggled"]
-[connection signal="pressed" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsVBoxContainer/BackButton" to="GUI/SettingsMenu" method="_on_back_button_pressed"]
+[connection signal="toggled" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/InvertMouseCheckButton" to="GUI/SettingsMenu" method="_on_invert_mouse_check_button_toggled"]
+[connection signal="toggled" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/InvertGamepadCheckButton" to="GUI/SettingsMenu" method="_on_invert_gamepad_check_button_toggled"]
+[connection signal="toggled" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/FullscreenCheckButton" to="GUI/SettingsMenu" method="_on_fullscreen_check_button_toggled"]
+[connection signal="toggled" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/VsyncCheckButton" to="GUI/SettingsMenu" method="_on_vsync_check_button_toggled"]
+[connection signal="value_changed" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/TargetFPSSlider" to="GUI/SettingsMenu" method="_on_target_fps_slider_value_changed"]
+[connection signal="pressed" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/BackButton" to="GUI/SettingsMenu" method="_on_back_button_pressed"]
 [connection signal="pressed" from="GUI/MainMenu/MarginContainer/VBoxContainer/MenuButtonsVBoxContainer/StartGameButton" to="GUI/MainMenu" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GUI/MainMenu/MarginContainer/VBoxContainer/MenuButtonsVBoxContainer/SettingsButton" to="GUI/MainMenu" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="GUI/MainMenu/MarginContainer/VBoxContainer/MenuButtonsVBoxContainer/ExitGameButton" to="GUI/MainMenu" method="_on_exit_game_button_pressed"]

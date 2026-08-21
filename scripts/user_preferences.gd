@@ -4,6 +4,7 @@ class_name UserPreferences extends Resource
 @export var invert_gamepad: bool = false
 @export var fullscreen_enabled: bool = false
 @export var vsync_enabled: bool = true
+@export_range (10.0, 1000.0, 1.0) var target_fps: float = 60.0
 
 
 func save() -> void:

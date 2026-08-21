@@ -18,6 +18,11 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q3wao"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2reeo"]
+bg_color = Color(0.13725491, 0.13725491, 0.13725491, 1)
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
+
 [resource]
 default_font = ExtResource("1_sx0q5")
 Button/colors/font_focus_color = Color(0.6548768, 0.69233644, 0.543518, 1)
@@ -37,3 +42,4 @@ CheckButton/icons/unchecked_disabled = ExtResource("3_q3wao")
 CheckButton/icons/unchecked_disabled_mirrored = ExtResource("4_3ccda")
 CheckButton/icons/unchecked_mirrored = ExtResource("4_3ccda")
 CheckButton/styles/hover_pressed = SubResource("StyleBoxEmpty_q3wao")
+HSlider/styles/slider = SubResource("StyleBoxFlat_2reeo")

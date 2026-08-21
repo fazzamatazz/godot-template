@@ -6,10 +6,28 @@ class_name Game extends Node
 var _main_scene: MainScene
 var _is_loading: bool = true
 
+var user_prefs : UserPreferences
+
 
 func _ready() -> void:
 	open_main_menu()
 	_hide_loading_screen()
+
+
+# sets the FPS and vsync settings for game versus menu
+func set_game_mode(enabled: bool) -> void:
+	# this needs to be reloaded in case settings were changed
+	user_prefs = UserPreferences.load_or_create()
+	if enabled:
+		if user_prefs.vsync_enabled:
+			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+			Engine.set_max_fps(0)
+		else:
+			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+			Engine.set_max_fps(int(user_prefs.target_fps))
+	else:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+		Engine.set_max_fps(0)
 
 
 func open_main_menu() -> void:
@@ -41,6 +59,7 @@ func start_main_scene() -> void:
 	_main_scene.game = self
 	add_child(_main_scene)
 	move_child(_main_scene, 0)
+	set_game_mode(true)
 	#_hide_loading_screen()
 
 
@@ -48,3 +67,4 @@ func stop_main_scene() -> void:
 	if _main_scene:
 		_main_scene.queue_free()
 		remove_child(_main_scene)
+		set_game_mode(false)
