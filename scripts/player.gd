@@ -38,21 +38,12 @@ func _ready() -> void:
 	_init_user_preferences()	
 	_init_stephandler()
 	_init_signals()
-	_capture_mouse()
 
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("escape"):
 			if _main_scene:
 				_main_scene.pause_and_open_menu()
-
-
-func _capture_mouse() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-
-func _release_mouse() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
 func _init_user_preferences() -> void:
@@ -66,8 +57,6 @@ func _init_user_preferences() -> void:
 func _init_signals() -> void:
 	EventBus.settings_invert_gamepad.connect(on_invert_gamepad_toggle)
 	EventBus.settings_invert_mouse.connect(on_invert_mouse_toggle)
-	EventBus.pause_game.connect(_release_mouse)
-	EventBus.resume_game.connect(_capture_mouse)
 	EventBus.settings_change_mouse_sensitivity.connect(on_change_mouse_sensitivity)
 	EventBus.settings_change_gamepad_sensitivity.connect(on_change_gamepad_sensitivity)
 
