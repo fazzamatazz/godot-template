@@ -1,14 +1,15 @@
 extends HSlider
 
 @export var label : Label
+@export var label_text : String = 'TARGET FPS:  '
 
 
 func _ready() -> void:
-	setLabelFPS(value)
+	setLabelValue(value)
 
 
-func setLabelFPS(fps: float) -> void:
+func setLabelValue(fps: float) -> void:
 	if fps <= 0.0:
-		label.text = 'TARGET FPS:  N/A'
+		label.text = label_text + '  N/A'
 	else:
-		label.text = 'TARGET FPS:  ' + str(int(fps))
+		label.text = label_text + str(int(fps))

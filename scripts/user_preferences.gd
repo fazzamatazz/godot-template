@@ -4,8 +4,10 @@ class_name UserPreferences extends Resource
 @export var invert_gamepad: bool = false
 @export var fullscreen_enabled: bool = false
 @export var vsync_enabled: bool = true
-@export_range (10.0, 1000.0, 1.0) var target_fps: float = 60.0
-
+@export_range (0.0, 1000.0, 1.0) var target_fps: float = 60.0
+@export_range (0.0, 100.0, 5.0) var master_volume: float = 100.0
+@export_range (0.0, 100.0, 5.0) var music_volume: float = 100.0
+@export_range (0.0, 100.0, 5.0) var sound_volume: float = 100.0
 
 func save() -> void:
 	ResourceSaver.save(self, "user://user_prefs.tres")

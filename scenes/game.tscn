@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://i536kdm6x2u8" path="res://scripts/main_menu.gd" id="5_p57ef"]
 [ext_resource type="Script" uid="uid://ce43ocym5fham" path="res://scripts/target_fps_slider.gd" id="6_0tnpc"]
 [ext_resource type="Script" uid="uid://cnutbkaphw1ld" path="res://scripts/checkbutton.gd" id="6_gee14"]
+[ext_resource type="Script" uid="uid://cl4udv8hiuty2" path="res://scripts/volume_slider.gd" id="6_vtaks"]
 
 [node name="Game" type="Node" unique_id=100589575]
 script = ExtResource("1_uwrxv")
@@ -17,6 +18,7 @@ script = ExtResource("1_uwrxv")
 [node name="PerformanceMonitor" parent="GUI" unique_id=612432395 instance=ExtResource("3_lnu2h")]
 
 [node name="SettingsMenu" type="Control" parent="GUI" unique_id=61398278]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -53,6 +55,78 @@ layout_mode = 2
 size_flags_vertical = 4
 columns = 2
 
+[node name="MasterVolumeLabel" type="Label" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=1692515536]
+layout_mode = 2
+text = "MASTER VOLUME:  100"
+horizontal_alignment = 2
+
+[node name="MasterVolumeSlider" type="HSlider" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=1586799431 node_paths=PackedStringArray("label")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+offset_transform_enabled = true
+offset_transform_position = Vector2(16, 0)
+offset_transform_visual_only = false
+focus_neighbor_top = NodePath("../BackButton")
+focus_neighbor_bottom = NodePath("../MusicVolumeSlider")
+focus_next = NodePath("../MusicVolumeSlider")
+focus_previous = NodePath("../BackButton")
+step = 5.0
+value = 100.0
+tick_count = 5
+script = ExtResource("6_vtaks")
+label = NodePath("../MasterVolumeLabel")
+label_text = "MASTER VOLUME:  "
+
+[node name="MusicVolumeLabel" type="Label" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=919788208]
+layout_mode = 2
+text = "MUSIC VOLUME:  100"
+horizontal_alignment = 2
+
+[node name="MusicVolumeSlider" type="HSlider" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=87872964 node_paths=PackedStringArray("label")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+offset_transform_enabled = true
+offset_transform_position = Vector2(16, 0)
+offset_transform_visual_only = false
+focus_neighbor_top = NodePath("../MasterVolumeSlider")
+focus_neighbor_bottom = NodePath("../SoundVolumeSlider")
+focus_next = NodePath("../SoundVolumeSlider")
+focus_previous = NodePath("../MasterVolumeSlider")
+step = 5.0
+value = 100.0
+tick_count = 5
+script = ExtResource("6_vtaks")
+label = NodePath("../MusicVolumeLabel")
+label_text = "MUSIC VOLUME:  "
+
+[node name="SoundVolumeLabel" type="Label" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=986509784]
+layout_mode = 2
+text = "SOUND VOLUME:  100"
+horizontal_alignment = 2
+
+[node name="SoundVolumeSlider" type="HSlider" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=20549557 node_paths=PackedStringArray("label")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+offset_transform_enabled = true
+offset_transform_position = Vector2(16, 0)
+offset_transform_visual_only = false
+focus_neighbor_top = NodePath("../MusicVolumeSlider")
+focus_neighbor_bottom = NodePath("../InvertMouseCheckButton")
+focus_next = NodePath("../InvertMouseCheckButton")
+focus_previous = NodePath("../MusicVolumeSlider")
+step = 5.0
+value = 100.0
+tick_count = 5
+script = ExtResource("6_vtaks")
+label = NodePath("../SoundVolumeLabel")
+label_text = "SOUND VOLUME:  "
+
 [node name="InvertMouseLabel" type="Label" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=333721983]
 layout_mode = 2
 text = "INVERT MOUSE Y-AXIS"
@@ -66,10 +140,10 @@ size_flags_vertical = 4
 offset_transform_enabled = true
 offset_transform_position = Vector2(16, 0)
 offset_transform_visual_only = false
-focus_neighbor_top = NodePath("../BackButton")
+focus_neighbor_top = NodePath("../SoundVolumeSlider")
 focus_neighbor_bottom = NodePath("../InvertGamepadCheckButton")
 focus_next = NodePath("../InvertGamepadCheckButton")
-focus_previous = NodePath("../BackButton")
+focus_previous = NodePath("../SoundVolumeSlider")
 script = ExtResource("6_gee14")
 
 [node name="InverGamepadLabel" type="Label" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=593533198]
@@ -157,8 +231,8 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 focus_neighbor_top = NodePath("../TargetFPSSlider")
-focus_neighbor_bottom = NodePath("../InvertMouseCheckButton")
-focus_next = NodePath("../InvertMouseCheckButton")
+focus_neighbor_bottom = NodePath("../MasterVolumeSlider")
+focus_next = NodePath("../MasterVolumeSlider")
 focus_previous = NodePath("../TargetFPSSlider")
 text = "BACK"
 
@@ -242,7 +316,6 @@ text = "EXIT"
 
 [node name="LoadingScreen" type="Control" parent="GUI" unique_id=1633142923]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -287,6 +360,9 @@ position = Vector2(99.99999, 19)
 scale = Vector2(0.025, 0.025)
 texture = ExtResource("3_lbhrr")
 
+[connection signal="value_changed" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/MasterVolumeSlider" to="GUI/SettingsMenu" method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/MusicVolumeSlider" to="GUI/SettingsMenu" method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/SoundVolumeSlider" to="GUI/SettingsMenu" method="_on_sound_volume_slider_value_changed"]
 [connection signal="toggled" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/InvertMouseCheckButton" to="GUI/SettingsMenu" method="_on_invert_mouse_check_button_toggled"]
 [connection signal="toggled" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/InvertGamepadCheckButton" to="GUI/SettingsMenu" method="_on_invert_gamepad_check_button_toggled"]
 [connection signal="toggled" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/FullscreenCheckButton" to="GUI/SettingsMenu" method="_on_fullscreen_check_button_toggled"]
