@@ -31,6 +31,10 @@ func _open() -> void:
 	show()
 
 
+func is_in_game() -> bool:
+	return get_tree().paused
+
+
 func _init_user_preferences() -> void:
 	user_prefs = UserPreferences.load_or_create()
 	_on_master_volume_slider_value_changed(user_prefs.master_volume)
@@ -60,7 +64,10 @@ func _on_visibility_changed() -> void:
 
 
 func _on_back_button_pressed() -> void:
-	EventBus.emit_signal("open_main_menu")
+	if is_in_game():
+		EventBus.emit_signal("open_pause_menu")
+	else:
+		EventBus.emit_signal("open_main_menu")
 	hide()
 
 
@@ -95,12 +102,21 @@ func _on_vsync_check_button_toggled(toggled_on: bool) -> void:
 		target_fps_slider.value = user_prefs.target_fps
 	user_prefs.vsync_enabled = toggled_on
 	user_prefs.save()
+	if is_in_game():
+		if user_prefs.vsync_enabled:
+			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+			Engine.set_max_fps(0)
+		else:
+			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+			Engine.set_max_fps(int(user_prefs.target_fps))
 
 
 func _on_target_fps_slider_value_changed(value: float) -> void:
 	target_fps_slider.setLabelValue(value)
 	user_prefs.target_fps = value
 	user_prefs.save()
+	if is_in_game() and !user_prefs.vsync_enabled:
+		Engine.set_max_fps(int(user_prefs.target_fps))
 
 
 func _on_master_volume_slider_value_changed(value: float) -> void:

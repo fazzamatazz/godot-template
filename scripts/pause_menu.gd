@@ -42,4 +42,5 @@ func _on_resume_game_button_pressed() -> void:
 
 
 func _on_in_game_settings_button_pressed() -> void:
-	print("in-game settings button pressed- not implemented")
+	EventBus.emit_signal("open_settings_menu")
+	hide()

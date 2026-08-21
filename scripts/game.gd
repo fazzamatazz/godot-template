@@ -2,6 +2,7 @@ class_name Game extends Node
 
 @onready var _loading_screen: Control = %LoadingScreen
 @onready var _loading_sprite: Sprite2D = %Sprite2D
+@onready var _background: ColorRect = %BgColorRect
 
 var _main_scene: MainScene
 var _is_loading: bool = true
@@ -11,7 +12,7 @@ var user_prefs : UserPreferences
 
 func _ready() -> void:
 	_init_signals()
-	open_main_menu()
+	EventBus.emit_signal("open_main_menu")
 	_hide_loading_screen()
 
 
@@ -44,10 +45,6 @@ func set_game_mode(enabled: bool) -> void:
 		Engine.set_max_fps(0)
 
 
-func open_main_menu() -> void:
-	EventBus.emit_signal("open_main_menu")
-
-
 func _process(delta: float) -> void:
 	if _is_loading:
 		_loading_sprite.rotation += delta * 4.0
@@ -74,6 +71,7 @@ func start_main_scene() -> void:
 	add_child(_main_scene)
 	move_child(_main_scene, 0)
 	set_game_mode(true)
+	_background.hide()
 	#_hide_loading_screen()
 
 
@@ -82,4 +80,5 @@ func stop_main_scene() -> void:
 		_main_scene.queue_free()
 		remove_child(_main_scene)
 		set_game_mode(false)
+		_background.show()
 		get_tree().paused = false
