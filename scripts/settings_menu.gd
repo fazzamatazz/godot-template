@@ -74,12 +74,12 @@ func _on_fullscreen_check_button_toggled(toggled_on: bool) -> void:
 
 func _on_vsync_check_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
-		#target_fps_slider.value = 0.0
 		target_fps_slider.editable = false
+		target_fps_slider.setLabelFPS(0.0)
 	else:
-		#_on_target_fps_slider_value_changed(user_prefs.target_fps)
-		target_fps_slider.value = user_prefs.target_fps
 		target_fps_slider.editable = true
+		target_fps_slider.setLabelFPS(user_prefs.target_fps)
+		target_fps_slider.value = user_prefs.target_fps
 	user_prefs.vsync_enabled = toggled_on
 	user_prefs.save()
 

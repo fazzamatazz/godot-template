@@ -8,4 +8,7 @@ func _ready() -> void:
 
 
 func setLabelFPS(fps: float) -> void:
-	label.text = 'TARGET FPS:  ' + str(int(fps))
+	if fps <= 0.0:
+		label.text = 'TARGET FPS:  N/A'
+	else:
+		label.text = 'TARGET FPS:  ' + str(int(fps))
