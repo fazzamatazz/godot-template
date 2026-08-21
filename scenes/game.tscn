@@ -5,17 +5,92 @@
 [ext_resource type="PackedScene" uid="uid://cguky4dx5mt1w" path="res://scenes/performance_monitor.tscn" id="3_lnu2h"]
 [ext_resource type="Theme" uid="uid://cwrkngwrwm1md" path="res://assets/themes/default_theme.tres" id="4_iywne"]
 [ext_resource type="Script" uid="uid://mxkppi4tjvry" path="res://scripts/settings_menu.gd" id="4_u5sy4"]
+[ext_resource type="Script" uid="uid://dg8343p0u0jbq" path="res://scripts/pause_menu.gd" id="4_vtaks"]
 [ext_resource type="Script" uid="uid://i536kdm6x2u8" path="res://scripts/main_menu.gd" id="5_p57ef"]
 [ext_resource type="Script" uid="uid://ce43ocym5fham" path="res://scripts/target_fps_slider.gd" id="6_0tnpc"]
 [ext_resource type="Script" uid="uid://cnutbkaphw1ld" path="res://scripts/checkbutton.gd" id="6_gee14"]
 [ext_resource type="Script" uid="uid://cl4udv8hiuty2" path="res://scripts/volume_slider.gd" id="6_vtaks"]
 
 [node name="Game" type="Node" unique_id=100589575]
+process_mode = 3
 script = ExtResource("1_uwrxv")
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=13293093]
 
 [node name="PerformanceMonitor" parent="GUI" unique_id=612432395 instance=ExtResource("3_lnu2h")]
+
+[node name="PauseMenu" type="Control" parent="GUI" unique_id=1079309841 node_paths=PackedStringArray("game")]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_iywne")
+script = ExtResource("4_vtaks")
+game = NodePath("../..")
+
+[node name="ColorRect" type="ColorRect" parent="GUI/PauseMenu" unique_id=1993183615]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.16470589, 0.16470589, 0.16470589, 0.5019608)
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/PauseMenu" unique_id=835612289]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 150
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/PauseMenu/MarginContainer" unique_id=764362486]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="PauseButtonsVBoxContainer" type="VBoxContainer" parent="GUI/PauseMenu/MarginContainer/VBoxContainer" unique_id=1529875427]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ResumeGameButton" type="Button" parent="GUI/PauseMenu/MarginContainer/VBoxContainer/PauseButtonsVBoxContainer" unique_id=1826852455]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../QuitGameButton")
+focus_neighbor_bottom = NodePath("../InGameSettingsButton")
+focus_next = NodePath("../InGameSettingsButton")
+focus_previous = NodePath("../QuitGameButton")
+text = "RESUME"
+
+[node name="InGameSettingsButton" type="Button" parent="GUI/PauseMenu/MarginContainer/VBoxContainer/PauseButtonsVBoxContainer" unique_id=1414565310]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../ResumeGameButton")
+focus_neighbor_bottom = NodePath("../QuitGameButton")
+focus_next = NodePath("../QuitGameButton")
+focus_previous = NodePath("../ResumeGameButton")
+text = "SETTINGS"
+
+[node name="QuitGameButton" type="Button" parent="GUI/PauseMenu/MarginContainer/VBoxContainer/PauseButtonsVBoxContainer" unique_id=2086610281]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../InGameSettingsButton")
+focus_neighbor_bottom = NodePath("../ResumeGameButton")
+focus_next = NodePath("../ResumeGameButton")
+focus_previous = NodePath("../InGameSettingsButton")
+text = "QUIT"
 
 [node name="SettingsMenu" type="Control" parent="GUI" unique_id=61398278]
 visible = false
@@ -360,6 +435,9 @@ position = Vector2(99.99999, 19)
 scale = Vector2(0.025, 0.025)
 texture = ExtResource("3_lbhrr")
 
+[connection signal="pressed" from="GUI/PauseMenu/MarginContainer/VBoxContainer/PauseButtonsVBoxContainer/ResumeGameButton" to="GUI/PauseMenu" method="_on_resume_game_button_pressed"]
+[connection signal="pressed" from="GUI/PauseMenu/MarginContainer/VBoxContainer/PauseButtonsVBoxContainer/InGameSettingsButton" to="GUI/PauseMenu" method="_on_in_game_settings_button_pressed"]
+[connection signal="pressed" from="GUI/PauseMenu/MarginContainer/VBoxContainer/PauseButtonsVBoxContainer/QuitGameButton" to="GUI/PauseMenu" method="_on_quit_game_button_pressed"]
 [connection signal="value_changed" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/MasterVolumeSlider" to="GUI/SettingsMenu" method="_on_master_volume_slider_value_changed"]
 [connection signal="value_changed" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/MusicVolumeSlider" to="GUI/SettingsMenu" method="_on_music_volume_slider_value_changed"]
 [connection signal="value_changed" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/SoundVolumeSlider" to="GUI/SettingsMenu" method="_on_sound_volume_slider_value_changed"]

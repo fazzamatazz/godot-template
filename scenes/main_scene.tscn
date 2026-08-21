@@ -17,6 +17,7 @@ sky = SubResource("Sky_w2twt")
 ambient_light_source = 3
 
 [node name="MainScene" type="Node3D" unique_id=2139951959]
+process_mode = 1
 script = ExtResource("1_7ykc4")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=368104862]

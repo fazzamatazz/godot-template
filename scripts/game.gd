@@ -10,8 +10,22 @@ var user_prefs : UserPreferences
 
 
 func _ready() -> void:
+	_init_signals()
 	open_main_menu()
 	_hide_loading_screen()
+
+
+func _init_signals() -> void:
+	EventBus.pause_game.connect(pause_game)
+	EventBus.resume_game.connect(resume_game)
+
+
+func pause_game() -> void:
+	get_tree().paused = true
+
+
+func resume_game() -> void:
+	get_tree().paused = false
 
 
 # sets the FPS and vsync settings for game versus menu
@@ -68,3 +82,4 @@ func stop_main_scene() -> void:
 		_main_scene.queue_free()
 		remove_child(_main_scene)
 		set_game_mode(false)
+		get_tree().paused = false
