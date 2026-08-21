@@ -5,6 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://bmr8gimufuu67" path="res://assets/themes/checkbox-checked-r2l.png" id="2_2reeo"]
 [ext_resource type="Texture2D" uid="uid://ci5fanb4c5fwe" path="res://assets/themes/checkbox-unchecked.png" id="3_q3wao"]
 [ext_resource type="Texture2D" uid="uid://b13u4oxkwgs45" path="res://assets/themes/checkbox-unchecked-r2l.png" id="4_3ccda"]
+[ext_resource type="Texture2D" uid="uid://uo2joagrecam" path="res://assets/themes/grabber.png" id="5_3ccda"]
+[ext_resource type="Texture2D" uid="uid://j71lhuls2ort" path="res://assets/themes/grabber-disabled.png" id="6_vqm40"]
+[ext_resource type="Texture2D" uid="uid://ckm8cf4taw1ex" path="res://assets/themes/grabber-highlight.png" id="7_soce2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ac8xs"]
 
@@ -25,7 +28,7 @@ expand_margin_bottom = 8.0
 
 [resource]
 default_font = ExtResource("1_sx0q5")
-Button/colors/font_focus_color = Color(0.6548768, 0.69233644, 0.543518, 1)
+Button/colors/font_focus_color = Color(0.654902, 0.69411767, 0.54509807, 1)
 Button/colors/font_hover_color = Color(0.6548768, 0.69233644, 0.543518, 1)
 Button/colors/font_hover_pressed_color = Color(0.6548768, 0.69233644, 0.543518, 1)
 Button/styles/disabled = SubResource("StyleBoxEmpty_ac8xs")
@@ -42,4 +45,8 @@ CheckButton/icons/unchecked_disabled = ExtResource("3_q3wao")
 CheckButton/icons/unchecked_disabled_mirrored = ExtResource("4_3ccda")
 CheckButton/icons/unchecked_mirrored = ExtResource("4_3ccda")
 CheckButton/styles/hover_pressed = SubResource("StyleBoxEmpty_q3wao")
+HSlider/icons/grabber = ExtResource("5_3ccda")
+HSlider/icons/grabber_disabled = ExtResource("6_vqm40")
+HSlider/icons/grabber_highlight = ExtResource("7_soce2")
+HSlider/icons/tick = null
 HSlider/styles/slider = SubResource("StyleBoxFlat_2reeo")
