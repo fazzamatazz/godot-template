@@ -77,6 +77,11 @@ func _on_back_button_pressed() -> void:
 	hide()
 
 
+func _on_rebind_keys_button_pressed() -> void:
+	EventBus.emit_signal("open_rebind_keys_menu")
+	hide()
+
+
 func _on_invert_mouse_check_button_toggled(toggled_on: bool) -> void:
 	EventBus.emit_signal("settings_invert_mouse", toggled_on)
 	user_prefs.invert_mouse = toggled_on

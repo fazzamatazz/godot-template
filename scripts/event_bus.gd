@@ -9,6 +9,7 @@ signal settings_change_gamepad_sensitivity(value: float)
 signal open_main_menu()
 signal open_settings_menu()
 signal open_pause_menu()
+signal open_rebind_keys_menu()
 signal pause_game()
 signal resume_game()
 

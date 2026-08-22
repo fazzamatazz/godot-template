@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://ce43ocym5fham" path="res://scripts/target_fps_slider.gd" id="6_0tnpc"]
 [ext_resource type="Script" uid="uid://cnutbkaphw1ld" path="res://scripts/checkbutton.gd" id="6_gee14"]
 [ext_resource type="Script" uid="uid://cl4udv8hiuty2" path="res://scripts/volume_slider.gd" id="6_vtaks"]
+[ext_resource type="Script" uid="uid://iw6sjrk0d1" path="res://scripts/rebind_keys_menu.gd" id="9_kvpfn"]
 
 [node name="Game" type="Node" unique_id=100589575]
 process_mode = 3
@@ -130,15 +131,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 64
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 96
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 32
 
 [node name="SettingsButtonsGridContainer" type="GridContainer" parent="GUI/SettingsMenu/MarginContainer" unique_id=1512440556]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 8
 columns = 2
 
 [node name="MasterVolumeLabel" type="Label" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=1692515536]
@@ -376,11 +377,72 @@ label = NodePath("../TargetFPSLabel")
 [node name="BackButton" type="Button" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=89501092]
 layout_mode = 2
 size_flags_horizontal = 0
+focus_neighbor_left = NodePath("../RebindKeysButton")
 focus_neighbor_top = NodePath("../TargetFPSSlider")
+focus_neighbor_right = NodePath("../RebindKeysButton")
+focus_neighbor_bottom = NodePath("../MasterVolumeSlider")
+focus_next = NodePath("../RebindKeysButton")
+focus_previous = NodePath("../TargetFPSSlider")
+text = "< BACK"
+
+[node name="RebindKeysButton" type="Button" parent="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer" unique_id=872201513]
+layout_mode = 2
+size_flags_horizontal = 8
+offset_transform_enabled = true
+offset_transform_position = Vector2(12, 0)
+offset_transform_visual_only = false
+focus_neighbor_left = NodePath("../BackButton")
+focus_neighbor_top = NodePath("../TargetFPSSlider")
+focus_neighbor_right = NodePath("../BackButton")
 focus_neighbor_bottom = NodePath("../MasterVolumeSlider")
 focus_next = NodePath("../MasterVolumeSlider")
-focus_previous = NodePath("../TargetFPSSlider")
-text = "BACK"
+focus_previous = NodePath("../BackButton")
+text = "REBIND KEYS >"
+
+[node name="RebindKeysMenu" type="Control" parent="GUI" unique_id=499383974]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_iywne")
+script = ExtResource("9_kvpfn")
+
+[node name="ColorRect" type="ColorRect" parent="GUI/RebindKeysMenu" unique_id=1506206124]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.3764706)
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/RebindKeysMenu" unique_id=1213054023]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 32
+
+[node name="RebindKeysGridContainer" type="GridContainer" parent="GUI/RebindKeysMenu/MarginContainer" unique_id=876539834]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+columns = 3
+
+[node name="BackButton" type="Button" parent="GUI/RebindKeysMenu/MarginContainer/RebindKeysGridContainer" unique_id=152254966]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "< BACK"
 
 [node name="MainMenu" type="Control" parent="GUI" unique_id=1315708126 node_paths=PackedStringArray("game")]
 visible = false
@@ -523,6 +585,8 @@ texture = ExtResource("3_lbhrr")
 [connection signal="toggled" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/VsyncCheckButton" to="GUI/SettingsMenu" method="_on_vsync_check_button_toggled"]
 [connection signal="value_changed" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/TargetFPSSlider" to="GUI/SettingsMenu" method="_on_target_fps_slider_value_changed"]
 [connection signal="pressed" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/BackButton" to="GUI/SettingsMenu" method="_on_back_button_pressed"]
+[connection signal="pressed" from="GUI/SettingsMenu/MarginContainer/SettingsButtonsGridContainer/RebindKeysButton" to="GUI/SettingsMenu" method="_on_rebind_keys_button_pressed"]
+[connection signal="pressed" from="GUI/RebindKeysMenu/MarginContainer/RebindKeysGridContainer/BackButton" to="GUI/RebindKeysMenu" method="_on_back_button_pressed"]
 [connection signal="pressed" from="GUI/MainMenu/MarginContainer/VBoxContainer/MenuButtonsVBoxContainer/StartGameButton" to="GUI/MainMenu" method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GUI/MainMenu/MarginContainer/VBoxContainer/MenuButtonsVBoxContainer/SettingsButton" to="GUI/MainMenu" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="GUI/MainMenu/MarginContainer/VBoxContainer/MenuButtonsVBoxContainer/ExitGameButton" to="GUI/MainMenu" method="_on_exit_game_button_pressed"]
