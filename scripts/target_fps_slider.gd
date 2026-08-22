@@ -13,3 +13,13 @@ func setLabelValue(fps: float) -> void:
 		label.text = label_text + '  N/A'
 	else:
 		label.text = label_text + str(int(fps))
+
+
+func disableSlider() -> void:
+	label.add_theme_color_override('font_color', Color('#dfdfdf80'))
+	editable = false
+
+
+func enableSlider() -> void:
+	label.remove_theme_color_override('font_color')
+	editable = true
