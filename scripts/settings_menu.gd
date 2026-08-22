@@ -101,11 +101,10 @@ func _on_fullscreen_check_button_toggled(toggled_on: bool) -> void:
 func _on_vsync_check_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		target_fps_slider.disableSlider()
-		target_fps_slider.setLabelValue(0.0)
 	else:
 		target_fps_slider.enableSlider()
-		target_fps_slider.setLabelValue(user_prefs.target_fps)
-		target_fps_slider.value = user_prefs.target_fps
+		target_fps_slider.setSliderIndexFromMappedValue(user_prefs.target_fps)
+		target_fps_slider.updateLabel()
 	user_prefs.vsync_enabled = toggled_on
 	user_prefs.save()
 	if is_in_game():
@@ -117,9 +116,9 @@ func _on_vsync_check_button_toggled(toggled_on: bool) -> void:
 			Engine.set_max_fps(int(user_prefs.target_fps))
 
 
-func _on_target_fps_slider_value_changed(value: float) -> void:
-	target_fps_slider.setLabelValue(value)
-	user_prefs.target_fps = value
+func _on_target_fps_slider_value_changed(_value: float) -> void:
+	target_fps_slider.updateLabel()
+	user_prefs.target_fps = target_fps_slider.getMappedValue()
 	user_prefs.save()
 	if is_in_game() and !user_prefs.vsync_enabled:
 		Engine.set_max_fps(int(user_prefs.target_fps))

@@ -366,9 +366,10 @@ focus_neighbor_top = NodePath("../VsyncCheckButton")
 focus_neighbor_bottom = NodePath("../BackButton")
 focus_next = NodePath("../BackButton")
 focus_previous = NodePath("../VsyncCheckButton")
-max_value = 720.0
+max_value = 23.0
 editable = false
-tick_count = 13
+tick_count = 24
+ticks_on_borders = true
 script = ExtResource("6_0tnpc")
 label = NodePath("../TargetFPSLabel")
 
