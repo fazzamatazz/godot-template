@@ -59,9 +59,10 @@ func _init_user_preferences() -> void:
 
 func focus_button() -> void:
 	if buttons_grid_container:
-		var control := buttons_grid_container.get_child(1)
-		if control is Button or control is HSlider or control is CheckButton:
-			control.grab_focus()
+		for control in buttons_grid_container.get_children():
+			if control is Button or control is HSlider or control is CheckButton:
+				control.grab_focus()
+				break
 
 
 func _on_visibility_changed() -> void:

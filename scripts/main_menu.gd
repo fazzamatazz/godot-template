@@ -20,9 +20,10 @@ func _open() -> void:
 
 func focus_button() -> void:
 	if buttons_v_box_container:
-		var button : Button = buttons_v_box_container.get_child(0)
-		if button is Button:
-			button.grab_focus()
+		for control in buttons_v_box_container.get_children():
+			if control is Button or control is HSlider or control is CheckButton:
+				control.grab_focus()
+				break
 
 
 func _on_start_game_button_pressed() -> void:
