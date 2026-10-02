@@ -6,6 +6,7 @@ const STEP_HEIGHT_THRESHOLD := 0.05
 const MAX_FALL_SPEED := 20.0
 
 @export var _animation_player : AnimationPlayer
+@export var _crouch_shapecast : ShapeCast3D
 @export var _walk_speed := 3.0
 @export var _run_speed := 6.0
 @export var _jump_speed := 4.0
@@ -41,6 +42,7 @@ func _ready() -> void:
 	_init_user_preferences()	
 	_init_stephandler()
 	_init_signals()
+	_crouch_shapecast.add_exception(self)
 
 
 func _process(_delta: float) -> void:
@@ -97,17 +99,17 @@ func _physics_process(delta: float) -> void:
 	# handle crouch
 	if _crouch_toggle:
 		if Input.is_action_just_pressed("crouch"):
-			if _is_crouching:
+			if _is_crouching and !_crouch_shapecast.is_colliding():
 				_animation_player.play_backwards("crouch")
 				_is_crouching = false
-			else:
+			elif !_is_crouching:
 				_animation_player.play("crouch")
 				_is_crouching = true
 	else:
 		if Input.is_action_pressed("crouch") and !_is_crouching:
 			_animation_player.play("crouch")
 			_is_crouching = true
-		elif !Input.is_action_pressed("crouch") and _is_crouching:
+		elif !Input.is_action_pressed("crouch") and _is_crouching and !_crouch_shapecast.is_colliding():
 			_animation_player.play_backwards("crouch")
 			_is_crouching = false
 	
