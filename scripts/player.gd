@@ -121,7 +121,7 @@ func _physics_process(delta: float) -> void:
 		walk_speed = walk_speed * input_len if input_len < 0.8 else walk_speed
 		_is_running = true if Input.is_action_pressed("run") else false
 		
-	var speed := _run_speed if _is_running else walk_speed
+	var speed := _run_speed if _is_running and !_is_crouching else walk_speed
 	if _direction:
 		velocity.x = _direction.x * speed
 		velocity.z = _direction.z * speed
