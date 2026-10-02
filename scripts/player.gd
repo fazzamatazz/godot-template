@@ -18,7 +18,7 @@ const MAX_FALL_SPEED := 20.0
 @export var _invert_gamepad := false
 @export var _gamepad_sensitivity_x := 0.05
 @export var _gamepad_sensitivity_y := 0.05
-@export var _crouch_toggle := false
+@export var _crouch_toggle := true
 @export var _spotlight : SpotLight3D
 @export var _main_scene : MainScene
 
