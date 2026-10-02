@@ -9,3 +9,4 @@ https://docs.godotengine.org/en/stable/#godot-docs-4-7-branch
 
 ### Special thanks
 https://www.fontspace.com/wellbutrin-font-f480  
+https://kenney.nl/assets/prototype-textures  

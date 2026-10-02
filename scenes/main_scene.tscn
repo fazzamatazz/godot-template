@@ -14,7 +14,8 @@ sky_material = SubResource("ProceduralSkyMaterial_und3l")
 [sub_resource type="Environment" id="Environment_pw63i"]
 background_mode = 2
 sky = SubResource("Sky_w2twt")
-ambient_light_source = 3
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
 
 [node name="MainScene" type="Node3D" unique_id=2139951959]
 process_mode = 1
