@@ -87,34 +87,36 @@ func on_invert_gamepad_toggle(toggled_on: bool) -> void:
 func _physics_process(delta: float) -> void:
 	_gamepad_look()
 	
+	var walk_speed : float = _walk_speed
+	
 	# add gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		velocity.y = clampf(velocity.y, -MAX_FALL_SPEED, MAX_FALL_SPEED)
-
-	# handle jump
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = _jump_speed
 	
-	# handle crouch
-	if _crouch_toggle:
-		if Input.is_action_just_pressed("crouch"):
-			if _is_crouching and !_crouch_shapecast.is_colliding():
-				_animation_player.play_backwards("crouch")
-				_is_crouching = false
-			elif !_is_crouching:
+	if is_on_floor():
+		# handle jump
+		if !_is_crouching and Input.is_action_just_pressed("jump"):
+			velocity.y = _jump_speed
+		
+		# handle crouch
+		if _crouch_toggle:
+			if Input.is_action_just_pressed("crouch"):
+				if _is_crouching and !_crouch_shapecast.is_colliding():
+					_animation_player.play_backwards("crouch")
+					_is_crouching = false
+				elif !_is_crouching:
+					_animation_player.play("crouch")
+					_is_crouching = true
+		else:
+			if Input.is_action_pressed("crouch") and !_is_crouching:
 				_animation_player.play("crouch")
 				_is_crouching = true
-	else:
-		if Input.is_action_pressed("crouch") and !_is_crouching:
-			_animation_player.play("crouch")
-			_is_crouching = true
-		elif !Input.is_action_pressed("crouch") and _is_crouching and !_crouch_shapecast.is_colliding():
-			_animation_player.play_backwards("crouch")
-			_is_crouching = false
+			elif !Input.is_action_pressed("crouch") and _is_crouching and !_crouch_shapecast.is_colliding():
+				_animation_player.play_backwards("crouch")
+				_is_crouching = false
 	
-	var walk_speed : float = _walk_speed
-	if is_on_floor():
+		# handle movement
 		_input_dir = Input.get_vector("strafe_left", "strafe_right", "forward", "backward")
 		_direction = (transform.basis * Vector3(_input_dir.x, 0, _input_dir.y)).normalized()
 		var input_len = _input_dir.length()
