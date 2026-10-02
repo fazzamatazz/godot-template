@@ -5,6 +5,7 @@ const MAX_ANGLE_LOOK_DOWN := deg_to_rad(-70)
 const STEP_HEIGHT_THRESHOLD := 0.05
 const MAX_FALL_SPEED := 20.0
 
+@export var _animation_player : AnimationPlayer
 @export var _walk_speed := 3.0
 @export var _run_speed := 6.0
 @export var _jump_speed := 4.0
@@ -17,6 +18,7 @@ const MAX_FALL_SPEED := 20.0
 @export var _invert_gamepad := false
 @export var _gamepad_sensitivity_x := 0.05
 @export var _gamepad_sensitivity_y := 0.05
+@export var _crouch_toggle := true
 @export var _spotlight : SpotLight3D
 @export var _main_scene : MainScene
 
@@ -32,6 +34,7 @@ var _input_dir : Vector2
 var _step_timer := 0.0
 var _direction : Vector3
 var _is_running := false
+var _is_crouching := false
 
 
 func _ready() -> void:
@@ -90,7 +93,19 @@ func _physics_process(delta: float) -> void:
 	# handle jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = _jump_speed
-
+	
+	# handle crouch
+	if _crouch_toggle:
+		if Input.is_action_just_pressed("crouch"):
+			if _is_crouching:
+				print("uncrouch")
+				_animation_player.play_backwards("crouch")
+				_is_crouching = false
+			else:
+				print("crouch")
+				_animation_player.play("crouch")
+				_is_crouching = true
+	
 	var walk_speed : float = _walk_speed
 	if is_on_floor():
 		_input_dir = Input.get_vector("strafe_left", "strafe_right", "forward", "backward")
