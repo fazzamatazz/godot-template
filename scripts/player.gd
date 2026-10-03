@@ -9,7 +9,7 @@ const MAX_FALL_SPEED := 20.0
 @export var _crouch_shapecast : ShapeCast3D
 @export var _walk_speed := 3.0
 @export var _run_speed := 6.0
-@export var _jump_speed := 4.0
+@export var _jump_speed := 4.5
 @export var _max_step_height := 0.4
 # in metres per second. This is implemented as a delay before the next step can be taken, rather than a velocity
 @export var _step_speed := 1.5
