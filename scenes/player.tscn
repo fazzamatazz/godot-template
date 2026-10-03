@@ -133,5 +133,7 @@ libraries/ = SubResource("AnimationLibrary_qhqgy")
 
 [node name="CrouchShapeCast3D" type="ShapeCast3D" parent="." unique_id=63798754]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.325, 0)
+enabled = false
 shape = SubResource("BoxShape3D_2o8nk")
 target_position = Vector3(0, 0, 0)
+max_results = 8

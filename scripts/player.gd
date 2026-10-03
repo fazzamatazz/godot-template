@@ -102,7 +102,7 @@ func _physics_process(delta: float) -> void:
 		# handle crouch
 		if _crouch_toggle:
 			if Input.is_action_just_pressed("crouch"):
-				if _is_crouching and !_crouch_shapecast.is_colliding():
+				if _is_crouching and !_is_crouch_colliding():
 					_animation_player.play_backwards("crouch")
 					_is_crouching = false
 				elif !_is_crouching:
@@ -112,7 +112,7 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_pressed("crouch") and !_is_crouching:
 				_animation_player.play("crouch")
 				_is_crouching = true
-			elif !Input.is_action_pressed("crouch") and _is_crouching and !_crouch_shapecast.is_colliding():
+			elif !Input.is_action_pressed("crouch") and _is_crouching and !_is_crouch_colliding():
 				_animation_player.play_backwards("crouch")
 				_is_crouching = false
 	
@@ -191,3 +191,8 @@ func _update_camera() -> void:
 		_camera.global_transform = _camera_pivot.global_transform
 		_camera.global_position.y = lerpf(camera_pos_y, _camera_pivot.global_position.y, 0.15)
 #		_camera.global_transform = _camera.global_transform.interpolate_with(_camera_pivot.global_transform, 0.1)
+
+
+func _is_crouch_colliding() -> bool:
+	_crouch_shapecast.force_shapecast_update() # disabled so needs force to check collisions
+	return _crouch_shapecast.is_colliding()
