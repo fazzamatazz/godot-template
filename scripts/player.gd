@@ -139,17 +139,25 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		rotate_y(-event.relative.x * _mouse_sensitivity_x)
-		_head.rotate_x(-event.relative.y * _mouse_sensitivity_y * (-1.0 if _invert_mouse else 1.0))
-		_head.rotation.x = clampf(_head.rotation.x, MAX_ANGLE_LOOK_DOWN, MAX_ANGLE_LOOK_UP)
+		_rotate_view(
+			-event.relative.x * _mouse_sensitivity_x,
+			-event.relative.y * _mouse_sensitivity_y * (-1.0 if _invert_mouse else 1.0)
+		)
 
 
 func _gamepad_look() -> void:
 	var h_look : float = Input.get_axis('look_left', 'look_right')
 	var v_look : float = Input.get_axis('look_up', 'look_down')
-	rotate_y(-h_look * _gamepad_sensitivity_x)
-	_head.rotate_x(-v_look * _gamepad_sensitivity_y * (-1.0 if _invert_gamepad else 1.0))
-	_head.rotation.x = clampf(_head.rotation.x, MAX_ANGLE_LOOK_DOWN, MAX_ANGLE_LOOK_UP)
+	_rotate_view(
+		-h_look * _gamepad_sensitivity_x,
+		-v_look * _gamepad_sensitivity_y * (-1.0 if _invert_gamepad else 1.0)
+	)
+
+
+func _rotate_view(x: float, y: float) -> void:
+	rotate_y(x)
+	_camera_pivot.rotate_x(y)
+	_camera_pivot.rotation.x = clampf(_camera_pivot.rotation.x, MAX_ANGLE_LOOK_DOWN, MAX_ANGLE_LOOK_UP)
 
 
 func _update_spotlight() -> void:
