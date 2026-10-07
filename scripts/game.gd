@@ -51,13 +51,16 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouse or event is InputEventMouseButton or event is InputEventMouseMotion:
-		if !_main_scene or get_tree().paused:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	if event is InputEventJoypadButton or event is InputEventJoypadMotion:
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	# we do not need to capture the mouse for this RTS implementation
+	# maybe later, if we implement gamepad
+	pass
+#	if event is InputEventMouse or event is InputEventMouseButton or event is InputEventMouseMotion:
+#		if !_main_scene or get_tree().paused:
+#			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+#		else:
+#			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+#	if event is InputEventJoypadButton or event is InputEventJoypadMotion:
+#		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 
 func exit_game() -> void:
